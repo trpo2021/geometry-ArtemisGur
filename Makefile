@@ -1,2 +1,2 @@
 all:
-	gcc main.c functions.c -o test_1
+	gcc geometry.c -o task_first
