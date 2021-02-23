@@ -1,2 +1,2 @@
 all:
-	gcc geometry.c -o task_first
+	gcc -Wall -Wextra -o tasK_1 geometry.c 
