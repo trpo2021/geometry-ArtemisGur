@@ -17,7 +17,7 @@ typedef struct
     double radius;
 } CircleTokens;
 
-bool exception_print(bool correct_check, int position, char *input_data)
+bool exception_print(bool correct_check, int position)
 {
     for (int j = 0; j < position; j++)
     {
@@ -42,7 +42,7 @@ bool fill_circle_coord(CircleTokens *coords, char *input_data)
             break;
         }
         else
-            correct_check = exception_print(correct_check, i, &coords);
+            correct_check = exception_print(correct_check, i);
     }
 
     for (int i = coords->space + 1; i < coords->comma; i++)
@@ -56,7 +56,7 @@ bool fill_circle_coord(CircleTokens *coords, char *input_data)
             break;
         }
         else
-            correct_check = exception_print(correct_check, i, &coords);
+            correct_check = exception_print(correct_check, i);
     }
 
     for (int i = coords->comma + 1; i < coords->cl_bracket; i++)
@@ -71,7 +71,7 @@ bool fill_circle_coord(CircleTokens *coords, char *input_data)
         }
         else
         {
-            correct_check = exception_print(correct_check, i, &coords);
+            correct_check = exception_print(correct_check, i);
         }
     }
     return correct_check;
@@ -94,7 +94,7 @@ CircleTokens make_circle_tokens(int string_length, char *array, CircleTokens cir
         }
         if (array[i] == ' ' && array[i - 1] == ',')
         {
-            int somthing_wrong = i;
+            continue;
         }
         else if (array[i] == ' ')
         {
