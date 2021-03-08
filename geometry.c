@@ -1,108 +1,4 @@
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
-#include <ctype.h>
-#define MAX_SIZE_OF_STRING 100
-
-typedef struct
-{
-    int op_bracket;
-    int cl_bracket;
-    int space;
-    int comma;
-    double coordX;
-    double coordY;
-    double radius;
-} CircleTokens;
-
-bool exception_print(bool correct_check, int position)
-{
-    for (int j = 0; j < position; j++)
-    {
-        printf(" ");
-    }
-    printf("^\n");
-    printf("Error at column %d. Expected coordination.\n", position);
-    return correct_check = false;
-}
-
-bool fill_circle_coord(CircleTokens *coords, char *input_data)
-{
-    bool correct_check;
-    for (int i = coords->op_bracket + 1; i < coords->space; i++)
-    {
-        char *tmp_double = &input_data[i];
-        char *tmp;
-        double temp = strtod(tmp_double, &tmp);
-        if (*tmp == input_data[coords->space])
-        {
-            coords->coordX = temp;
-            break;
-        }
-        else
-            correct_check = exception_print(correct_check, i);
-    }
-
-    for (int i = coords->space + 1; i < coords->comma; i++)
-    {
-        char *tmp_double = &input_data[i];
-        char *tmp;
-        double temp = strtod(tmp_double, &tmp);
-        if (*tmp == input_data[coords->comma])
-        {
-            coords->coordY = temp;
-            break;
-        }
-        else
-            correct_check = exception_print(correct_check, i);
-    }
-
-    for (int i = coords->comma + 1; i < coords->cl_bracket; i++)
-    {
-        char *tmp_double = &input_data[i];
-        char *tmp;
-        double temp = strtod(tmp_double, &tmp);
-        if (*tmp == input_data[coords->cl_bracket])
-        {
-            coords->radius = temp;
-            break;
-        }
-        else
-        {
-            correct_check = exception_print(correct_check, i);
-        }
-    }
-    return correct_check;
-}
-CircleTokens make_circle_tokens(int string_length, char *array, CircleTokens circle_struct)
-{
-    for (int i = 0; i < string_length; i++)
-    {
-        if (array[i] == '(')
-        {
-            circle_struct.op_bracket = i;
-        }
-        if (array[i] == ')')
-        {
-            circle_struct.cl_bracket = i;
-        }
-        if (array[i] == ',')
-        {
-            circle_struct.comma = i;
-        }
-        if (array[i] == ' ' && array[i - 1] == ',')
-        {
-            continue;
-        }
-        else if (array[i] == ' ')
-        {
-            circle_struct.space = i;
-        }
-    }
-    return circle_struct;
-}
+#include "header.h"
 
 int main(void)
 {
@@ -122,13 +18,11 @@ int main(void)
 
     if (strcmp(figure, example_of_circle) != 0)
     {
-        printf("Incorrect figure. Expected \"circle\".\n.");
+        printf("Incorrect figure. Expected \"circle\" or \"triangle\".\n.");
         return -1;
     }
+
     correct_check = fill_circle_coord(&circle_struct, input_data);
 
-    if (correct_check)
-        printf("\n%s(%.2lf %.2lf, %.2lf)\n", figure, circle_struct.coordX, circle_struct.coordY, circle_struct.radius);
-    else
-        return -1;
+    print_figure(correct_check, figure, circle_struct, find_circle_perimeter(circle_struct), find_circle_area(circle_struct));
 }
