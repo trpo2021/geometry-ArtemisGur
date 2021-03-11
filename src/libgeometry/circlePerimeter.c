@@ -1,8 +1,8 @@
 #include "header.h"
-#define PI 3.14
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 double find_circle_perimeter(CircleTokens circle)
 {
-    double perimeter = 2 * PI * circle.radius;
-    return perimeter;
+    return M_PI * 2 * circle.radius;
 }

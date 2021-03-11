@@ -1,11 +1,7 @@
 #pragma once
-#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <string.h>
-#include <ctype.h>
-#define MAX_SIZE_OF_STRING 1000
 
 typedef struct
 {
