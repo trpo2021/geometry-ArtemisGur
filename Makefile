@@ -1,32 +1,47 @@
-CC=gcc
-CFLAGS= -Wall -Werror
-SOURCES= exception.c MakeTokens.c makeCircle.c printCircle.c circlePerimeter.c circleArea.c
-OBJECTS=$(SOURCES:.c=.o)
-PATH_SRC= src/libgeometry/
-PATH_OBJ= obj/libgeometry/
-PATH_BIN= bin/
+APP_NAME = geometry
+LIB_NAME = libgeometry
 
-all: lib
-	$(CC) $(CFLAGS) -I src/ src/geometry/geometry.c -L. $(PATH_OBJ)libgeometry.a -o $(PATH_BIN)task
+CFLAGS = -Wall -Wextra -Werror
+CPPFLAGS = -I src -MP -MMD
+LDFLAGS =
+LDLIBS =
 
-lib: exception.o MakeTokens.o makeCircle.o printCircle.o circleArea.o circlePerimeter.o
-	ar rc $(PATH_OBJ)libgeometry.a $(PATH_OBJ)exception.o $(PATH_OBJ)MakeTokens.o $(PATH_OBJ)makeCircle.o $(PATH_OBJ)printCircle.o $(PATH_OBJ)circlePerimeter.o $(PATH_OBJ)circleArea.o
-	ranlib $(PATH_OBJ)libgeometry.a
+BIN_DIR = bin
+OBJ_DIR = obj
+SRC_DIR = src
 
-exception.o: 
-	$(CC) -c $(CFLAGS) $(PATH_SRC)exception.c -o $(PATH_OBJ)exception.o
+APP_PATH = $(BIN_DIR)/$(APP_NAME).out
+LIB_PATH = $(OBJ_DIR)/$(SRC_DIR)/$(LIB_NAME)/$(LIB_NAME).a
 
-MakeTokens.o: 
-	$(CC) -c $(CFLAGS) $(PATH_SRC)MakeTokens.c -o $(PATH_OBJ)MakeTokens.o
+SRC_EXT = c
 
-makeCircle.o: 
-	$(CC) -c $(CFLAGS) $(PATH_SRC)makeCircle.c -o $(PATH_OBJ)/makeCircle.o
+APP_SOURCES = $(shell find $(SRC_DIR)/$(APP_NAME) -name '*.$(SRC_EXT)')
+APP_OBJECTS = $(APP_SOURCES:$(SRC_DIR)/%.$(SRC_EXT)=$(OBJ_DIR)/$(SRC_DIR)/%.o)
 
-printCircle.o: 
-	$(CC) -c $(CFLAGS) $(PATH_SRC)printCircle.c -o $(PATH_OBJ)printCircle.o
+LIB_SOURCES = $(shell find $(SRC_DIR)/$(LIB_NAME) -name '*.$(SRC_EXT)')
+LIB_OBJECTS = $(LIB_SOURCES:$(SRC_DIR)/%.$(SRC_EXT)=$(OBJ_DIR)/$(SRC_DIR)/%.o)
 
-circlePerimeter.o: 
-	$(CC) -c $(CFLAGS) $(PATH_SRC)circlePerimeter.c -o $(PATH_OBJ)circlePerimeter.o
+DEPS = $(APP_OBJECTS:.o=.d) $(LIB_OBJECTS:.o=.d)
 
-circleArea.o: 
-	$(CC) -c $(CFLAGS) $(PATH_SRC)circlePerimeter.c -o $(PATH_OBJ)circlePerimeter.o
+.PHONY: all
+all: $(APP_PATH)
+
+-include $(DEPS)
+
+$(APP_PATH): $(APP_OBJECTS) $(LIB_PATH)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $^ -o $@ $(LDFLAGS) $(LDLIBS)
+
+$(LIB_PATH): $(LIB_OBJECTS)
+	ar rcs $@ $^
+
+$(OBJ_DIR)/$(SRC_DIR)/$(APP_NAME)/%.o: $(SRC_DIR)/$(APP_NAME)/%.c
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
+
+$(OBJ_DIR)/$(SRC_DIR)/$(LIB_NAME)/%.o: $(SRC_DIR)/$(LIB_NAME)/%.c
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
+
+.PHONY: clean
+clean:
+	$(RM) $(APP_PATH) $(LIB_PATH)
+	find $(OBJ_DIR) -name '*.o' -exec $(RM) '{}' \;
+	find $(OBJ_DIR) -name '*.d' -exec $(RM) '{}' \;
