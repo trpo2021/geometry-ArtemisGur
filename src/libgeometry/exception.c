@@ -2,7 +2,8 @@
 
 bool exception_print(bool correct_check, int position)
 {
-    for (int j = 0; j < position; j++) {
+    for (int j = 0; j < position; j++)
+    {
         printf(" ");
     }
     printf("^\n");

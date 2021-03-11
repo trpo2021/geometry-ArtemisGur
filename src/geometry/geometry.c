@@ -18,17 +18,14 @@ int main(void)
     char figure[circle_struct.op_bracket];
     strncpy(figure, input_data, circle_struct.op_bracket);
 
-    if (strcmp(figure, example_of_circle) != 0) {
+    if (strcmp(figure, example_of_circle) != 0)
+    {
         printf("Incorrect figure. Expected \"circle\" or \"triangle\".\n.");
         return -1;
     }
 
     correct_check = fill_circle_coord(&circle_struct, input_data);
 
-    print_figure(
-            correct_check,
-            figure,
-            circle_struct,
-            find_circle_perimeter(circle_struct),
-            find_circle_area(circle_struct));
+    print_figure(correct_check, figure, circle_struct, find_circle_perimeter(circle_struct),
+                 find_circle_area(circle_struct));
 }

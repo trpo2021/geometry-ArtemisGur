@@ -1,6 +1,6 @@
 #include "header.h"
 
-CircleTokens make_circle_tokens(int string_length, char *array, CircleTokens circle_struct)
+CircleTokens make_circle_tokens(int string_length, char* array, CircleTokens circle_struct)
 {
     for (int i = 0; i < string_length; i++)
     {

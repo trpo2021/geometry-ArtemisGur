@@ -1,7 +1,7 @@
 #pragma once
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 typedef struct
 {
@@ -15,8 +15,9 @@ typedef struct
 } CircleTokens;
 
 bool exception_print(bool correct_check, int position);
-bool fill_circle_coord(CircleTokens *coords, char *input_data);
-CircleTokens make_circle_tokens(int string_length, char *array, CircleTokens circle_struct);
-void print_figure(bool correct_check, char *figure, CircleTokens circle_struct, double perimeter, double area);
+bool fill_circle_coord(CircleTokens* coords, char* input_data);
+CircleTokens make_circle_tokens(int string_length, char* array, CircleTokens circle_struct);
+void print_figure(bool correct_check, char* figure, CircleTokens circle_struct, double perimeter,
+                  double area);
 double find_circle_perimeter(CircleTokens circle);
 double find_circle_area(CircleTokens circle);
