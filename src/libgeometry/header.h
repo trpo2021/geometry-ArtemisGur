@@ -9,8 +9,8 @@ typedef struct
     int cl_bracket;
     int space;
     int comma;
-    double coordX;
-    double coordY;
+    double coord_x;
+    double coord_y;
     double radius;
 } CircleTokens;
 

@@ -10,7 +10,7 @@ bool fill_circle_coord(CircleTokens* coords, char* input_data)
         double temp = strtod(tmp_double, &tmp);
         if (*tmp == input_data[coords->space])
         {
-            coords->coordX = temp;
+            coords->coord_x = temp;
             break;
         }
         else
@@ -24,7 +24,7 @@ bool fill_circle_coord(CircleTokens* coords, char* input_data)
         double temp = strtod(tmp_double, &tmp);
         if (*tmp == input_data[coords->comma])
         {
-            coords->coordY = temp;
+            coords->coord_y = temp;
             break;
         }
         else

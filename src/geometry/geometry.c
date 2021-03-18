@@ -8,11 +8,11 @@ int main(void)
     char input_data[MAX_SIZE_OF_STRING];
     int length = 1;
     printf("Enter the data or \"0\" to exit the app: \n");
-    // fgets(input_data, MAX_SIZE_OF_STRING, stdin);
     bool correct_check = true;
     CircleTokens* array_of_shapes = malloc(sizeof(CircleTokens));
     char example_of_circle[] = "circle";
     char figure[7];
+
     while (*fgets(input_data, MAX_SIZE_OF_STRING, stdin) != '0')
     {
         int data_length = strlen(input_data);
