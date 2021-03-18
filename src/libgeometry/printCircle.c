@@ -1,4 +1,5 @@
 #include "header.h"
+#include <stdio.h>
 
 void print_figure(bool correct_check, char* figure, CircleTokens circle_struct, double perimeter,
                   double area)

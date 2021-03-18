@@ -1,4 +1,6 @@
 #include <libgeometry/header.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #define MAX_SIZE_OF_STRING 1000
 

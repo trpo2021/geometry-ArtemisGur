@@ -1,4 +1,5 @@
 #include "header.h"
+#include <stdlib.h>
 
 bool fill_circle_coord(CircleTokens* coords, char* input_data)
 {

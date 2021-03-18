@@ -1,4 +1,5 @@
 #include "header.h"
+#include <stdio.h>
 
 bool exception_print(bool correct_check, int position)
 {
