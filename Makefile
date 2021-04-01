@@ -4,7 +4,7 @@ LIB_NAME = libgeometry
 CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = -I src -MP -MMD
 LDFLAGS =
-LDLIBS =
+LDLIBS = -lm
 
 BIN_DIR = bin
 OBJ_DIR = obj
