@@ -3,6 +3,5 @@
 # deps
 *.d
 # executables
-*.out
 #lib
 *.a
