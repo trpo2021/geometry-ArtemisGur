@@ -1,6 +1,6 @@
 APP_NAME = geometry
 LIB_NAME = libgeometry
-TEST_NAME = geometry-test
+TEST_NAME = test
 
 CFLAGS = -Wall -Wno-unknown-pragmas
 CPPFLAGS = -I src -MP -MMD
