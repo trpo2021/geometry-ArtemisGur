@@ -1,7 +1,6 @@
 Geometry
 ====
 # How to use
-```
 * Compile:
 ```
 make
