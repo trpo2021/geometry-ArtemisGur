@@ -1,9 +1,5 @@
-#include "header.h"
-#include <ctest.h>
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "ctest.h"
+#include "libgeometry/header.h"
 
 CTEST(equal, test)
 {
