@@ -29,8 +29,11 @@ int main(void)
             printf("Incorrect figure. Expected \"circle\" or \"triangle\".\n.");
             return -1;
         }
-
-        fill_circle_coord(&circle_struct, input_data);
+        if (fill_circle_coord(&circle_struct, input_data) != -1)
+        {
+            exception_print(fill_circle_coord(&circle_struct, input_data));
+            return -1;
+        }
         array_of_shapes[number_of_figures] = circle_struct;
         parameters[number_of_figures].perimeter = find_circle_perimeter(circle_struct);
         parameters[number_of_figures].area = find_circle_area(circle_struct);

@@ -1,5 +1,8 @@
 #include "ctest.h"
 #include "libgeometry/header.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 CTEST(equal, test)
 {
@@ -12,7 +15,6 @@ CTEST(area_suite, test_1)
     CircleTokens circle;
     circle.radius = 4;
     double rad = find_circle_area(circle);
-    printf("\n%f\n", rad);
     ASSERT_DBL_NEAR_TOL(50.24, rad, 0.2);
 }
 
@@ -56,9 +58,8 @@ CTEST(figure_suite, test_1)
     int data_length = strlen(input);
     CircleTokens circle_struct;
     circle_struct = make_circle_tokens(data_length, input, circle_struct);
-    printf("\n%s\n", input);
-    bool correct_check = fill_circle_coord(&circle_struct, input);
-    ASSERT_FALSE(correct_check);
+    int i = fill_circle_coord(&circle_struct, input);
+    ASSERT_EQUAL(7, i);
 }
 
 CTEST(figure_suite, test_2)
@@ -67,9 +68,8 @@ CTEST(figure_suite, test_2)
     int data_length = strlen(input);
     CircleTokens circle_struct;
     circle_struct = make_circle_tokens(data_length, input, circle_struct);
-    printf("\n%s\n", input);
-    bool correct_check = fill_circle_coord(&circle_struct, input);
-    ASSERT_FALSE(correct_check);
+    int i = fill_circle_coord(&circle_struct, input);
+    ASSERT_EQUAL(9, i);
 }
 
 CTEST(figure_suite, test_3)
@@ -78,9 +78,8 @@ CTEST(figure_suite, test_3)
     int data_length = strlen(input);
     CircleTokens circle_struct;
     circle_struct = make_circle_tokens(data_length, input, circle_struct);
-    printf("\n%s\n", input);
-    bool correct_check = fill_circle_coord(&circle_struct, input);
-    ASSERT_FALSE(correct_check);
+    int i = fill_circle_coord(&circle_struct, input);
+    ASSERT_EQUAL(7, i);
 }
 
 CTEST(figure_suite, test_5)
@@ -89,9 +88,8 @@ CTEST(figure_suite, test_5)
     int data_length = strlen(input);
     CircleTokens circle_struct;
     circle_struct = make_circle_tokens(data_length, input, circle_struct);
-    printf("\n%s\n", input);
-    bool correct_check = fill_circle_coord(&circle_struct, input);
-    ASSERT_TRUE(correct_check);
+    int i = fill_circle_coord(&circle_struct, input);
+    ASSERT_EQUAL(-1, i);
 }
 
 CTEST(figure_suite, test_6)
@@ -100,7 +98,6 @@ CTEST(figure_suite, test_6)
     int data_length = strlen(input);
     CircleTokens circle_struct;
     circle_struct = make_circle_tokens(data_length, input, circle_struct);
-    printf("\n%s\n", input);
     bool correct_check = fill_circle_coord(&circle_struct, input);
     ASSERT_TRUE(correct_check);
 }

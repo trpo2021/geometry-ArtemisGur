@@ -1,9 +1,8 @@
 #include "header.h"
 #include <stdlib.h>
 
-bool fill_circle_coord(CircleTokens* coords, char* input_data)
+int fill_circle_coord(CircleTokens* coords, char* input_data)
 {
-    bool correct_check;
     for (int i = coords->op_bracket + 1; i < coords->space; i++)
     {
         char* tmp_double = &input_data[i];
@@ -15,7 +14,7 @@ bool fill_circle_coord(CircleTokens* coords, char* input_data)
             break;
         }
         else
-            correct_check = exception_print(correct_check, i);
+            return i; // exception_print(correct_check, i);
     }
 
     for (int i = coords->space + 1; i < coords->comma; i++)
@@ -29,7 +28,7 @@ bool fill_circle_coord(CircleTokens* coords, char* input_data)
             break;
         }
         else
-            correct_check = exception_print(correct_check, i);
+            return i; // exception_print(correct_check, i);
     }
 
     for (int i = coords->comma + 1; i < coords->cl_bracket; i++)
@@ -44,8 +43,8 @@ bool fill_circle_coord(CircleTokens* coords, char* input_data)
         }
         else
         {
-            correct_check = exception_print(correct_check, i);
+            return i; // exception_print(correct_check, i);
         }
     }
-    return correct_check;
+    return -1;
 }

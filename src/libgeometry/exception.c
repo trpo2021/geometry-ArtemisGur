@@ -1,7 +1,7 @@
 #include "header.h"
 #include <stdio.h>
 
-bool exception_print(bool correct_check, int position)
+void exception_print(int position)
 {
     for (int j = 0; j < position; j++)
     {
@@ -9,5 +9,4 @@ bool exception_print(bool correct_check, int position)
     }
     printf("^\n");
     printf("Error at column %d. Expected number.\n", position);
-    return correct_check = false;
 }

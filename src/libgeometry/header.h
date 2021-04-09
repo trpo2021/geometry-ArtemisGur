@@ -19,8 +19,8 @@ typedef struct
     int coll[100];
 } ShapeParameters;
 
-bool exception_print(bool correct_check, int position);
-bool fill_circle_coord(CircleTokens* coords, char* input_data);
+void exception_print(int position);
+int fill_circle_coord(CircleTokens* coords, char* input_data);
 CircleTokens make_circle_tokens(int string_length, char* array, CircleTokens circle_struct);
 void print_figure(CircleTokens* shape, ShapeParameters* param);
 double find_circle_perimeter(CircleTokens circle);
